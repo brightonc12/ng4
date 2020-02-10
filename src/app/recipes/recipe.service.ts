@@ -1,11 +1,10 @@
 import { RecipeModel } from './recipe.model';
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IngredientModel } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable()
 export class RecipeService {
-  recipeSelected = new EventEmitter<RecipeModel>();
   private recipes: RecipeModel[] = [
     new RecipeModel(
       'A test',
@@ -30,7 +29,7 @@ export class RecipeService {
     ),
 
     new RecipeModel(
-      'this is the third test',
+      'This is the third test',
       'this is just a test 3',
       'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=' +
       'format&fit=crop&w=500&q=60',
@@ -45,6 +44,10 @@ export class RecipeService {
 
   getRecipes() {
     return this.recipes.slice();
+  }
+
+  getRecipe(index: number): RecipeModel {
+    return this.recipes[index];
   }
 
   addIngredientToShoppingList(ingredients: IngredientModel[]) {
